@@ -1,0 +1,37 @@
+{{#if viewMailList}}
+            {{!-- Hiển thị mảng emails --}}
+            <ul class="message-list">
+
+              {{#each viewMailList}}
+              
+                <li class="{{this.isReaded}} message-item" data-MID ="{{this.MID}}">
+                  
+                      <div class="col col-1"><span class="dot"></span>
+                      <div class="checkbox-wrapper">
+                        <input type="checkbox" id="chk1" />
+                        <label for="chk1" class="toggle"></label>
+                      </div>
+                      <p class="title">{{this.senderName}}</p>
+                      <div class="starbox-wrapper">
+                        <span
+                        class="star-toggle glyphicon {{this.isImportant}}" role="button"
+                        ></span>
+                      </div>
+                      
+                    </div>
+                    <div class="col col-2">
+                      <div class="subject">{{this.title}} &nbsp;&ndash;&nbsp;
+                        <span class="teaser">{{this.body}}</span></div>
+                      <div class="date">{{this.sentDate}}</div>
+                    </div>
+                     
+                </li>
+                
+              {{/each}}
+            </ul>
+          {{else}}
+            {{!-- Hiển thị thông báo nếu mảng rỗng --}}
+        <div class="nano-status">
+            Your mailbox is empty
+        </div> 
+{{/if}}

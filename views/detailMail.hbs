@@ -1,0 +1,212 @@
+
+  <div class="container" id="mail-detail">
+
+    {{#if mailDetail}}
+
+        <a href="/">
+          <button class="btn btn-outline-dark">
+            <i class="fas fa-arrow-left"></i>
+
+          </button>
+        </a>
+        <span style=" padding: 0 8px;"> </span>
+        <a href="#" class="">
+          <button class="btn btn-outline-dark">
+            <i class="fa fa-trash-alt"></i>
+          </button>
+        </a>
+        <a href="#" class="large-screen">
+          <button class="btn btn-outline-dark">
+            <i class="fa fa-envelope"></i>
+          </button>
+        </a>
+        <a href="#" class="large-screen">
+          <button class="btn btn-outline-dark">
+            <i class="fa fa-clock"></i>
+          </button>
+        </a>
+        <a href="#" class="large-screen">
+          <button class="btn btn-outline-dark">
+            <i class="fa fa-tag"></i>
+          </button>
+        </a>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>
+
+                <img style="width: 40px; border-radius: 50%; height: 40px;"
+                  src="{{mailDetail.avatar}}" alt="">
+                <span>{{mailDetail.firstName}} {{mailDetail.lastName}}</span>
+
+              </th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h2><b>{{mailDetail.title}}</b></h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{mailDetail.body}}
+                </td>
+
+            </tr>
+            <tr>
+              <hr>
+              {{!-- <td>*** Display file here ***</td> --}}
+
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <button class="btn btn-outline-dark" onclick="openReply()">
+          <i class="fas fa-reply"></i>
+          Reply
+        </button>
+        <button class="btn btn-outline-dark" onclick="openForward()">
+          Forward
+          <i class="fas fa-share"></i>
+        </button>
+        <div id="reply" class="container tab-pane">
+          <hr>
+          <div class="col-sm-9">
+            <form id="myForm" class="mb-5" action="" , method="post">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">To:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" name="to" required th:value="${email.from}"
+                  readonly>
+              </div>
+              <div class="form-group mb-3">
+                <!-- <p class="alert alert-success text-center">Status</p> -->
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Your subject" name="topic" th:value="${email.subject}"
+                  readonly>
+                <div class="input-group-append">
+                  <span class="input-group-text">Subject</span>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <textarea class="form-control" rows="5" name="content"></textarea>
+                <!-- <input class="form-control" rows="5" name="content"></input> -->
+              </div>
+              {{!-- <div class="custom-file input-group mb-3">
+                <input type="file" class="" id="file-reply" multiple onchange="updateListReply()">
+                <label class="custom-file-label m-0" for="file-reply">Choose file</label>
+              </div> --}}
+              {{!-- <div id="fileList-reply"></div> --}}
+
+              <div class="actions mt-2">
+                <span class="mb-3 mr-2">
+                  <button type="button" class="btn btn-danger px-3" onclick="closeForm()" name="cancel"
+                    value="cancel">Cancel</button>
+                </span>
+                <span class="mb-3">
+                  <button type="submit" class="btn btn-outline-success px-4" name="send" value="send">Reply</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div id="forward" class="container tab-pane"><br>
+          <hr>
+          <div class="col-sm-9">
+            <form id="myForm" class="mb-5" action="/email/send" , method="post">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">To:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username" name="to" required>
+              </div>
+              <div class="form-group mb-3">
+                <!-- <p class="alert alert-success text-center">Status</p> -->
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Your subject" name="topic" th:value="${email.subject}"
+                  readonly>
+                <div class="input-group-append">
+                  <span class="input-group-text">Subject</span>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <textarea class="form-control" rows="5" name="content" th:text="${email.content}" readonly></textarea>
+                <!-- <input class="form-control" rows="5" name="content" th:value="${email.content}" readonly></input> -->
+              </div>
+              {{!-- <div class="custom-file input-group mb-3">
+                <input type="file" class="" id="file-forward" multiple onchange="updateListForward()">
+                <label class="custom-file-label m-0" for="file-forward">Choose file</label>
+              </div>
+              <div id="fileList-forward"></div> --}}
+
+              <div class="actions mt-3">
+                <span class="mr-2">
+                  <button type="button" class="btn btn-danger px-3" onclick="closeForm()" name="cancel"
+                    value="cancel">Cancel</button>
+                </span>
+                <span class="mb-5">
+                  <button type="submit" class="btn btn-outline-success px-3" name="send" value="send">Forward</button>
+                </span>
+
+              </div>
+            </form>
+          </div>
+        </div> 
+
+      {{else}}
+      <div>
+        {{#if mailDetailError}}
+          <div class="error-display">{{mailDetailError}}</div>
+          {{else}}
+          <div class="no-content-display">This mail ID does not exists</div>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+
+  <script>
+        /*updateListForward = function () {
+        let input = document.getElementById("file-forward");
+        let output = document.getElementById("fileList-forward");
+
+        for (let i = 0; i < input.files.length; ++i) {
+            output.innerHTML += `<div style="display: flex; justify-content: space-between; background-color: #f5f5f5; align-items: center">
+                <li style="">${input.files.item(i).name} </li>
+                <i class="fa fa-times pr-2"></i>
+                </div>`;
+        }
+        };
+        updateListReply = function () {
+        let input = document.getElementById("file-reply");
+        let output = document.getElementById("fileList-reply");
+
+        for (let i = 0; i < input.files.length; ++i) {
+            output.innerHTML += `<div style="display: flex; justify-content: space-between; background-color: #f5f5f5; align-items: center">
+                <li style="">${input.files.item(i).name} </li>
+                <i class="fa fa-times pr-2"></i>
+                </div>`;
+          }
+        };*/
+
+        function openReply() {
+          document.querySelector("#reply").classList.toggle("active")
+          document.querySelector("#forward").classList.remove("active");
+        }
+
+        function openForward() {
+          document.querySelector("#forward").classList.toggle("active")
+          document.querySelector("#reply").classList.remove("active");
+        }
+
+        function closeForm() {
+          document.querySelector("#reply").classList.remove("active");
+          document.querySelector("#forward").classList.remove("active");
+        }
+
+  </script>
+

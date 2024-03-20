@@ -1,0 +1,65 @@
+
+<style>
+    .phone-simu-link{
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+    .phone-simu-link img{
+        width: 80px;
+        height: auto;
+    }
+
+    .phone-simu-link .link-content a{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    }
+    .phone-simu-link .link-content .this-desc{
+        background-color: #6cdc2d;
+        font-size: 16px;
+        font-weight: 600;
+        color: #000000;
+        padding-left: 10px;
+        padding-right: 5px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        margin-left: -10px;
+    }
+</style>
+<div class="container" id="changeProfile">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <div><a href="/"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a></div>
+          <h2 class="text-center mb-4">Verify</h2>
+          <div class="card-body">
+            <form id="forgot-password-form" action="/firstVerify" method="POST">
+              <div class="form-group">
+                <label for="inpOTP" style="width: 100%; text-align:center;">Enter OTP</label>
+                <input type="text" class="form-control" id="inpOTP" name="inpOTP"  style="text-align:center;">
+              </div>
+              <div class="form-group">
+                {{#if error }}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
+                        <p style="margin-bottom: 0">{{error}}</p>    
+                    </div>
+                {{/if}}
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div class="phone-simu-link">
+            <div class="link-content">
+                <a href="/user/mobilephone" target="_blank"><img src="/images/phone-call.png">
+                <div class="this-desc">
+                    Phone simulator to get OTP
+                </div>
+                </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

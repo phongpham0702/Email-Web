@@ -1,0 +1,27 @@
+<div class="container" id="changeProfile">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <div><a href="/"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a></div>
+          <h2 class="text-center mb-4">Forgot password</h2>
+          <div class="card-body">
+            <form id="forgot-password-form" action="/forgot" method="POST">
+              <div class="form-group">
+                <label for="phonenumber">Phone number</label>
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber">
+              </div>
+              <div class="form-group">
+                {{#if error }}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
+                        <p style="margin-bottom: 0">{{error}}</p>    
+                    </div>
+                {{/if}}
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

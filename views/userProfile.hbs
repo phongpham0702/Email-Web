@@ -1,0 +1,67 @@
+<div id="systemUserProfile">
+            <div class="row container d-flex justify-content-center">
+                <div class="profile-padding col-xl-8 col-md-10 col-sm-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div style="padding-left: 1.25rem;"><a href="/" style="color: aquamarine;"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a></div>
+                                <div class="primaryCenter card-block text-center text-white">
+                                    <div class="m-b-25">
+                                        <div class="profile-pic-div">
+                                            <img src="{{userInfo.avatar}}" id="photo" alt="User-Profile-Image">
+                                            <form id="upload-avatar" method="post" action="/user/upload/avatar" enctype="multipart/form-data">
+                                                <input type="file" id="file" name="userAvatar">
+                                            </form>           
+                                            <label for="file" id="uploadBtn">Choose Photo</label>
+                                        </div>
+                                        
+                                    </div>
+                                    <h6 class="f-w-600 m-b-20">{{userInfo.userName}}</h6>
+                                    <div class="row upload-avatar-button">
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-block">
+                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Personal Informations &nbsp; <a class="profile-function-text" href="/user/profile/change"><i class="bi bi-pencil-square"></i>&nbsp;Change</a></h6>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">First name</p>
+                                            <h6 class="text-muted f-w-400">{{userInfo.firstName}}</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Last name</p>
+                                            <h6 class="text-muted f-w-400">{{userInfo.lastName}}</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Birthday</p>
+                                            <h6 class="text-muted f-w-400">{{userInfo.birthDay}}</h6>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Phone</p>
+                                            <h6 class="text-muted f-w-400">{{userInfo.phoneNumber}}</h6>
+                                        </div>
+                                        
+                                    </div>
+                                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Account informations</h6>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="m-b-10 f-w-600">Public UID &nbsp;<span id="copyPublicID" class="profile-function-text"><i class="bi bi-back"></i>&nbsp;<span>Copy</span></span></p>
+                                            <h6 class="text-muted f-w-400" id="userPUID" data-PUID ="{{userInfo.publicUID}}">{{userInfo.publicUID}}</h6>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <p class="m-b-10 f-w-600">Password &nbsp;<a href="/user/changepassword" class="profile-function-text"><i class="bi bi-pencil-square"></i>&nbsp;Change</a></p>
+                                            <h6 class="text-muted f-w-400">••••••••••••••••••••</h6>   
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+<script src="/javascripts/userProfileHandle.js"></script>

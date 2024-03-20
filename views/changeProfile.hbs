@@ -1,0 +1,38 @@
+<div class="container" id="changeProfile">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <div><a href="/user/profile"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp;Back</a></div>
+          <h2 class="text-center mb-4">Change Information</h2>
+          <div class="card-body">
+            <form id="forgot-password-form" action="/user/profile/change" method="POST">
+              <div class="form-group">
+                <label for="firstname">First name</label>
+                <input type="text" class="form-control" id="firstname" name="firstName" value="{{accountProfile.firstName}}">
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last name</label>
+                <input type="text" class="form-control" id="lastname" name="lastName"  value="{{accountProfile.lastName}}">
+              </div>
+              <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input type="date" class="form-control" id="birthday" name="birthDay" value="{{accountProfile.birthDay}}">
+              </div>
+              <div class="form-group">
+                {{!-- <div class="alert alert-danger">
+                  Thong bao loi ve viec thay doi thong tin khong hop le
+                </div> --}}
+                {{#if error }}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="alert"></button>
+                        <p style="margin-bottom: 0">{{error}}</p>    
+                    </div>
+                {{/if}}
+              </div>
+              <button type="submit" class="btn btn-success">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
